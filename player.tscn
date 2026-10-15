@@ -70,7 +70,8 @@ script = ExtResource("1_vfg1r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1023380680]
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"walk"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=861288820]
 position = Vector2(1, 0)
