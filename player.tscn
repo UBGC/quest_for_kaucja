@@ -28,6 +28,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 size = Vector2(28, 46.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(31, 50)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1766430221]
 script = ExtResource("1_vfg1r")
 
@@ -37,5 +40,20 @@ animation = &"idle"
 frame_progress = 0.4659194
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=861288820]
-position = Vector2(0, 0.25)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_2hs0m")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1370172246]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(1, -1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1660443146]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
