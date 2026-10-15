@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="5_0s5r2"]
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://sqc0235ofoob" path="res://bootle.tscn" id="6_0s5r2"]
+[ext_resource type="PackedScene" path="res://level_intro.tscn" id="7_intro"]
+[ext_resource type="PackedScene" path="res://level_exit.tscn" id="8_exit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idooy"]
 size = Vector2(32, 715)
@@ -16,6 +18,14 @@ size = Vector2(1175, 55)
 size = Vector2(1155, 391)
 
 [node name="Level 2" type="Node2D" unique_id=1353001692]
+
+[node name="LevelIntro" parent="." instance=ExtResource("7_intro")]
+dialogue_title = "ARENA GLIWICE"
+dialogue_text = "Opened in 2018 on the site of the former Stadion XX-lecia, the arena brings big crowds to Gliwice. Bottles arrive faster here and change shape quickly, so time each catch."
+
+[node name="LevelExit" parent="." instance=ExtResource("8_exit")]
+position = Vector2(1090, 350)
+next_level_path = "res://level_3.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1583237123]
 position = Vector2(568, 325)
@@ -58,21 +68,35 @@ scale = Vector2(2, 2)
 
 [node name="CharacterBody2D2" parent="." unique_id=1872648464 instance=ExtResource("6_0s5r2")]
 position = Vector2(611, 408)
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 2
 
 [node name="spawner" parent="." unique_id=249892475 instance=ExtResource("5_0s5r2")]
 position = Vector2(68, 400)
 scale = Vector2(0.5, 0.5)
+min_spawn_delay = 1.0
+max_spawn_delay = 2.0
+max_live_bottles = 22
+shape_cycle_interval = 0.42
 
 [node name="spawner" parent="spawner" unique_id=36752767 instance=ExtResource("5_0s5r2")]
 position = Vector2(336, 8)
+min_spawn_delay = 1.0
+max_spawn_delay = 2.0
+max_live_bottles = 22
+shape_cycle_interval = 0.42
 
 [node name="spawner" parent="spawner/spawner" unique_id=1206124761 instance=ExtResource("5_0s5r2")]
 position = Vector2(1678, -4)
+min_spawn_delay = 1.0
+max_spawn_delay = 2.0
+max_live_bottles = 22
+shape_cycle_interval = 0.42
 
 [node name="spawner2" parent="." unique_id=1906143129 instance=ExtResource("5_0s5r2")]
 position = Vector2(926, 409)
 scale = Vector2(0.5, 0.5)
-
-[connection signal="body_entered" from="CharacterBody2D2" to="CharacterBody2D2" method="_on_body_entered"]
+min_spawn_delay = 1.0
+max_spawn_delay = 2.0
+max_live_bottles = 22
+shape_cycle_interval = 0.42

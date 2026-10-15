@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_epypp"]
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_epypp"]
 [ext_resource type="PackedScene" path="res://licznik.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://level_intro.tscn" id="5_intro"]
+[ext_resource type="PackedScene" path="res://level_exit.tscn" id="6_exit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 26)
@@ -16,7 +18,15 @@ size = Vector2(375, 10)
 
 [node name="Level1" type="Node2D" unique_id=453797874]
 
-[node name="HUD" parent="." instance=ExtResource("4_hud")]
+[node name="HUD" parent="." unique_id=889312781 instance=ExtResource("4_hud")]
+
+[node name="LevelIntro" parent="." instance=ExtResource("5_intro")]
+dialogue_title = "PARK CHROBREGO"
+dialogue_text = "This park dates to 1913-15. Its paths have welcomed Gliwice residents for generations. Keep them clear, watch the bottles change shape, and catch a good deposit."
+
+[node name="LevelExit" parent="." instance=ExtResource("6_exit")]
+position = Vector2(1090, 350)
+next_level_path = "res://level_2.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1877307436]
 position = Vector2(576, 324.00003)

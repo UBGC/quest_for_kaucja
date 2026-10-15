@@ -7,6 +7,7 @@ func _ready() -> void:
 	$Center/Card/Padding/Content/PlayButton.grab_focus()
 
 func _on_play_pressed() -> void:
+	global.money = 0.0
 	var error := get_tree().change_scene_to_file("res://node_2d.tscn")
 	if error != OK:
 		push_error("Unable to load the game scene: %s" % error_string(error))

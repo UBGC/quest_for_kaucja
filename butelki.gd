@@ -1,87 +1,64 @@
-extends Node
+class_name Bottle
+extends Area2D
 
-# 1. Definicja flag bitowych za pomocą potęg dwójki (przesunięcie bitowe)
-const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
-const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
-var graczScena = preload("res://player.tscn")
-var value: float = 0.0
+signal form_changed(value: float)
 
-var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
-
-# Baza danych 6 typów butelek (współrzędne na spritesheet w pikselach: Rect2(x, y, szerokość, wysokość))
-# Załóżmy, że każda ikonka butelki ma wymiary 32x64 piksele i leżą one w rzędzie obok siebie.
-var bottle_types = [
-	{
-		"flags": FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
-		"base_value": 1.0, 
-		"region": Rect2(0, 0, 13, 18)
-	},
-	{
-		"flags": 0,                 # Tylko Szklana (1)
-		"base_value": 1.0,
-		"region": Rect2(13, 0, 13, 18)
-	},
-	{
-		"flags": FLAG_KAUCYJNA,                # Tylko Kaucyjna (2)
-		"base_value": 1.0,
-		"region": Rect2(26, 0, 13, 18)
-	},
-	{
-		"flags": FLAG_SZKLANA,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
-		"base_value": 1.0,
-		"region": Rect2(39, 0, 13, 18)
-	},
-	{
-		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Kolejny wariant szklanej kaucyjnej
-		"base_value": 1.5,
-		"region": Rect2(52, 0, 13, 18)
-	},
-	{
-		"flags": FLAG_SZKLANA,                 # Kolejny wariant szklanej niekaucyjnej
-		"base_value": 1.2,
-		"region": Rect2(65, 0, 13, 18)
-	}
+const FLAG_SZKLANA := 1 << 0
+const FLAG_KAUCYJNA := 1 << 1
+const SPRITESHEET: Texture2D = preload("res://BottleSpriteSheet.png")
+const BOTTLE_TYPES: Array[Dictionary] = [
+	{"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, "base_value": 1.0, "region": Rect2(0, 0, 13, 18)},
+	{"flags": FLAG_SZKLANA, "base_value": 1.0, "region": Rect2(13, 0, 13, 18)},
+	{"flags": FLAG_KAUCYJNA, "base_value": 1.0, "region": Rect2(26, 0, 13, 18)},
+	{"flags": 0, "base_value": 1.0, "region": Rect2(39, 0, 13, 18)},
+	{"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, "base_value": 1.5, "region": Rect2(52, 0, 13, 18)},
+	{"flags": FLAG_SZKLANA, "base_value": 1.2, "region": Rect2(65, 0, 13, 18)}
 ]
 
+@export_range(0.2, 2.0, 0.05) var shape_cycle_interval := 0.75
+@export_range(5.0, 30.0, 1.0) var lifetime_seconds := 12.0
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+var value: float = 0.0
+var _current_type := 0
+
 func _ready() -> void:
-	value = losuj_butelke()["value"]
-	# Pętla testowa sprawdzająca czy losują się różne indeksy
-	for i in range(10):
-		var wylosowana_butelka = losuj_butelke()
-		print("Losowanie ", i + 1, " -> Wartość: ", wylosowana_butelka["value"], " PLN, Flagi: ", wylosowana_butelka["flags"])
-func losuj_butelke() -> Dictionary:
-	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
-	var dane_butelki = bottle_types.pick_random()
-	
-	# 2. Obliczamy ostateczną cenę na podstawie flag
-	var ostateczna_wartosc = oblicz_wartosc(dane_butelki["flags"], dane_butelki["base_value"])
-	
-	# 3. Tworzymy dynamicznie AtlasTexture, żeby wyciąć odpowiedni fragment ze spritesheetu
-	var atlas_texture = AtlasTexture.new()
-	atlas_texture.atlas = spritesheet
-	atlas_texture.region = dane_butelki["region"]
-	
-	return {
-		"texture": atlas_texture,
-		"value": ostateczna_wartosc,
-		"flags": dane_butelki["flags"]
-	}
+	_current_type = randi_range(0, BOTTLE_TYPES.size() - 1)
+	_set_type(_current_type)
+	_cycle_shapes()
+	_expire_after_lifetime()
 
-func oblicz_wartosc(flags: int, base_value: float) -> float:
-	var value = base_value
-	
-	# Sprawdzamy, czy flaga SZKLANA jest ustawiona (operacja bitowa AND: &)
+func _set_type(index: int) -> void:
+	var type_data: Dictionary = BOTTLE_TYPES[index]
+	value = _calculate_value(int(type_data["flags"]), float(type_data["base_value"]))
+
+	var texture := AtlasTexture.new()
+	texture.atlas = SPRITESHEET
+	texture.region = type_data["region"]
+
+	var frames := animated_sprite.sprite_frames.duplicate(true) as SpriteFrames
+	frames.set_frame(&"bootle", 0, texture)
+	animated_sprite.sprite_frames = frames
+	form_changed.emit(value)
+
+func _cycle_shapes() -> void:
+	while is_inside_tree():
+		await get_tree().create_timer(shape_cycle_interval).timeout
+		if not is_inside_tree():
+			return
+		_current_type = (_current_type + 1) % BOTTLE_TYPES.size()
+		_set_type(_current_type)
+
+func _expire_after_lifetime() -> void:
+	await get_tree().create_timer(lifetime_seconds).timeout
+	if is_inside_tree():
+		queue_free()
+
+func _calculate_value(flags: int, base_value: float) -> float:
+	var bottle_value := base_value
 	if flags & FLAG_SZKLANA:
-		value *= 2.0 # Wartość dwukrotnie wyższa
-		
-	# Sprawdzamy, czy flaga KAUCYJNA jest ustawiona
+		bottle_value *= 2.0
 	if not (flags & FLAG_KAUCYJNA):
-		# Jeśli NIE jest kaucyjna, stosujemy karę -3 zł (lub ustawiamy sztywno -3)
-		value *= -3.0 
-		# Uwaga: jeśli chcesz, aby kara -3 była niezależna od bazy, możesz dać np. value -= 3.0
-		
-	return value
-
-
-func _on_body_entered(_body: Node2D) -> void:
-	queue_free()
+		bottle_value *= -3.0
+	return bottle_value

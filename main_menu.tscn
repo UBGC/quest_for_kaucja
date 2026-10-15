@@ -141,7 +141,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.80784315, 0.85882354, 0.7764706, 1)
 theme_override_font_sizes/font_size = 17
-text = "Collect bottles and earn your deposit."
+text = "Explore Gliwice. Catch bottles at the right moment."
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="Center/Card/Padding/Content"]
@@ -209,7 +209,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
-text = "Move around with W A S D or the arrow keys."
+text = "Move with W A S D or the arrow keys."
 autowrap_mode = 2
 horizontal_alignment = 1
 
@@ -217,7 +217,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
-text = "Collect the bottles to add their deposit to your total."
+text = "When a bottle is close, press E or SPACE when its changing deposit is positive."
 autowrap_mode = 2
 horizontal_alignment = 1
 

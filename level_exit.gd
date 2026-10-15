@@ -1,7 +1,7 @@
 extends Area2D
 
-const REQUIRED_MONEY := 50.0
-const NEXT_LEVEL_PATH := "res://level_2.tscn"
+@export var required_money := 0.0
+@export_file("*.tscn") var next_level_path := "res://level_2.tscn"
 
 @onready var exit_visual: Node2D = $ExitVisual
 
@@ -18,7 +18,7 @@ func _on_money_changed(value: float) -> void:
 
 
 func _update_open_state(value: float) -> void:
-	var should_open := value >= REQUIRED_MONEY
+	var should_open := value >= required_money
 	if should_open == is_open:
 		return
 
@@ -31,6 +31,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if not is_open or not body.is_in_group("player"):
 		return
 
-	var error := get_tree().change_scene_to_file(NEXT_LEVEL_PATH)
+	var error := get_tree().change_scene_to_file(next_level_path)
 	if error != OK:
 		push_error("Unable to load the next level: %s" % error_string(error))

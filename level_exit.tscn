@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://level_exit.gd" id="1_exit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exit"]
+radius = 35.0
+
+[node name="LevelExit" type="Area2D"]
+collision_layer = 0
+monitoring = false
+script = ExtResource("1_exit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 224)
+shape = SubResource("CircleShape2D_exit")
+
+[node name="ExitVisual" type="Node2D" parent="."]
+visible = false
+z_index = 3
+
+[node name="Rim" type="Polygon2D" parent="ExitVisual"]
+color = Color(0.32, 0.2, 0.08, 1)
+polygon = PackedVector2Array(-37, 0, -31, -18, -18, -29, 0, -33, 18, -29, 31, -18, 37, 0, 31, 18, 18, 29, 0, 33, -18, 29, -31, 18)
+
+[node name="Hole" type="Polygon2D" parent="ExitVisual"]
+color = Color(0.015, 0.02, 0.025, 1)
+polygon = PackedVector2Array(-29, 0, -24, -14, -14, -22, 0, -25, 14, -22, 24, -14, 29, 0, 24, 14, 14, 22, 0, 25, -14, 22, -24, 14)
+
+[node name="Label" type="Label" parent="ExitVisual"]
+offset_left = -32.0
+offset_top = -60.0
+offset_right = 32.0
+offset_bottom = -36.0
+theme_override_colors/font_color = Color(0.92941177, 0.92941177, 0.77254903, 1)
+theme_override_font_sizes/font_size = 14
+text = "NEXT"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

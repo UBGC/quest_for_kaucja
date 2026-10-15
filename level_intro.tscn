@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://level_intro.gd" id="1_intro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
+bg_color = Color(0.02745098, 0.06666667, 0.050980393, 0.96)
+border_color = Color(0.3647059, 0.7607843, 0.41960785, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 16
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_continue"]
+bg_color = Color(0.1764706, 0.45490196, 0.26666668, 1)
+border_color = Color(0.47058824, 0.8117647, 0.49411765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+
+[node name="LevelIntro" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_intro")
+
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.025, 0.02, 0.76)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(700, 350)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
+
+[node name="Padding" type="MarginContainer" parent="Center/Card"]
+layout_mode = 2
+theme_override_constants/margin_left = 38
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="Center/Card/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Eyebrow" type="Label" parent="Center/Card/Padding/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7137255, 0.8509804, 0.6509804, 1)
+theme_override_font_sizes/font_size = 14
+text = "GLIWICE FIELD NOTES"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Center/Card/Padding/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8862745, 0.95686275, 0.7372549, 1)
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Body" type="Label" parent="Center/Card/Padding/Content"]
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Center/Card/Padding/Content"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.98039216, 0.9137255, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_continue")
+text = "LET'S CLEAN UP  (ENTER)"
+
+[connection signal="pressed" from="Center/Card/Padding/Content/ContinueButton" to="." method="_on_continue_pressed"]
