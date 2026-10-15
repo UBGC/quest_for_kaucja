@@ -28,6 +28,10 @@ project/assembly_name="Quest for Kaucja"
 
 enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 Right={
