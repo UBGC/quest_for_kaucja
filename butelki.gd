@@ -4,7 +4,6 @@ extends Node
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
 const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
 
-# Zastąp linijkę @export tym:
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 
 # Baza danych 6 typów butelek (współrzędne na spritesheet w pikselach: Rect2(x, y, szerokość, wysokość))
@@ -13,32 +12,32 @@ var bottle_types = [
 	{
 		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
 		"base_value": 1.0, 
-		"region": Rect2(0, 0, 32, 64)
+		"region": Rect2(0, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA,                 # Tylko Szklana (1)
 		"base_value": 1.0,
-		"region": Rect2(32, 0, 32, 64)
+		"region": Rect2(13, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_KAUCYJNA,                # Tylko Kaucyjna (2)
 		"base_value": 1.0,
-		"region": Rect2(64, 0, 32, 64)
+		"region": Rect2(26, 0, 13, 18)
 	},
 	{
 		"flags": 0,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
 		"base_value": 1.0,
-		"region": Rect2(96, 0, 32, 64)
+		"region": Rect2(39, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Kolejny wariant szklanej kaucyjnej
 		"base_value": 1.5,
-		"region": Rect2(128, 0, 32, 64)
+		"region": Rect2(52, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA,                 # Kolejny wariant szklanej niekaucyjnej
 		"base_value": 1.2,
-		"region": Rect2(160, 0, 32, 64)
+		"region": Rect2(65, 0, 13, 18)
 	}
 ]
 
