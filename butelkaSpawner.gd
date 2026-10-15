@@ -6,13 +6,12 @@ var bottleScene = preload("res://bootle.tscn")
 
 
 func _ready() -> void:
-    petlaSpawnu()
+	petlaSpawnu()
 
 func petlaSpawnu():
-    while true:
-        var bottle = bottleScene.instantiate()
-        add_child(bottle)
-        bottle.global_position = global_position + Vector2(0, 20)
-        await get_tree().create_timer(spawnInterval).timeout
-        
-
+	while true:
+		var bottle = bottleScene.instantiate()
+		add_child(bottle)
+		bottle.global_position = global_position + Vector2(0, 20)
+		await get_tree().create_timer(spawnInterval).timeout
+		
