@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://biewbm1muyrlo"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://depdvch0gajbn" path="res://main_menu.gd" id="1_menu"]
-[ext_resource type="Texture2D" uid="uid://bg2gqx20bbe2s" path="res://mainMenuBG.png" id="2_fu7sn"]
-[ext_resource type="Texture2D" uid="uid://3fntukakw01x" path="res://mainMenuLogoSprite.png" id="2_logo"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" path="res://mainMenuLogoSprite.png" id="2_logo"]
+[ext_resource type="Texture2D" path="res://level1BG.png" id="3_background"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
 bg_color = Color(0.02745098, 0.06666667, 0.050980393, 0.94)
+border_color = Color(0.3647059, 0.7607843, 0.41960785, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.3647059, 0.7607843, 0.41960785, 1)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
@@ -20,54 +20,54 @@ shadow_size = 18
 shadow_offset = Vector2(0, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
-content_margin_left = 18.0
-content_margin_top = 12.0
-content_margin_right = 18.0
-content_margin_bottom = 12.0
 bg_color = Color(0.1764706, 0.45490196, 0.26666668, 1)
+border_color = Color(0.47058824, 0.8117647, 0.49411765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.47058824, 0.8117647, 0.49411765, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
 content_margin_left = 18.0
 content_margin_top = 12.0
 content_margin_right = 18.0
 content_margin_bottom = 12.0
-bg_color = Color(0.105882354, 0.32156864, 0.17254902, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.7137255, 0.9019608, 0.59607846, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
-content_margin_left = 18.0
-content_margin_top = 12.0
-content_margin_right = 18.0
-content_margin_bottom = 12.0
 bg_color = Color(0.23529412, 0.5686275, 0.32941177, 1)
+border_color = Color(0.7137255, 0.9019608, 0.59607846, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.7137255, 0.9019608, 0.59607846, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
 
-[node name="MainMenu" type="Control" unique_id=72469551]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.105882354, 0.32156864, 0.17254902, 1)
+border_color = Color(0.7137255, 0.9019608, 0.59607846, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,18 +76,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="Backdrop" type="TextureRect" parent="." unique_id=1053301397]
+[node name="Backdrop" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fu7sn")
+texture = ExtResource("3_background")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Tint" type="ColorRect" parent="." unique_id=125553311]
+[node name="Tint" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.015686275, 0.047058824, 0.03137255, 0.72)
 
-[node name="Center" type="CenterContainer" parent="." unique_id=550185148]
+[node name="Center" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,76 +104,76 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" type="PanelContainer" parent="Center" unique_id=575971210]
+[node name="Card" type="PanelContainer" parent="Center"]
 custom_minimum_size = Vector2(460, 500)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="Padding" type="MarginContainer" parent="Center/Card" unique_id=1056200321]
+[node name="Padding" type="MarginContainer" parent="Center/Card"]
 layout_mode = 2
 theme_override_constants/margin_left = 34
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 34
 theme_override_constants/margin_bottom = 30
 
-[node name="Content" type="VBoxContainer" parent="Center/Card/Padding" unique_id=1020092063]
+[node name="Content" type="VBoxContainer" parent="Center/Card/Padding"]
 layout_mode = 2
 theme_override_constants/separation = 13
 
-[node name="Logo" type="TextureRect" parent="Center/Card/Padding/Content" unique_id=1010188945]
+[node name="Logo" type="TextureRect" parent="Center/Card/Padding/Content"]
 custom_minimum_size = Vector2(360, 64)
 layout_mode = 2
 texture = ExtResource("2_logo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Tagline" type="Label" parent="Center/Card/Padding/Content" unique_id=1573523396]
+[node name="Tagline" type="Label" parent="Center/Card/Padding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7294118, 0.8352941, 0.6901961, 1)
 theme_override_font_sizes/font_size = 16
 text = "CLEAN STREETS. BIG ADVENTURES."
 horizontal_alignment = 1
 
-[node name="Separator" type="HSeparator" parent="Center/Card/Padding/Content" unique_id=1571997251]
+[node name="Separator" type="HSeparator" parent="Center/Card/Padding/Content"]
 layout_mode = 2
 
-[node name="Description" type="Label" parent="Center/Card/Padding/Content" unique_id=1371226548]
+[node name="Description" type="Label" parent="Center/Card/Padding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.80784315, 0.85882354, 0.7764706, 1)
 theme_override_font_sizes/font_size = 17
 text = "Collect bottles and earn your deposit."
 horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="Center/Card/Padding/Content" unique_id=1262228405]
+[node name="PlayButton" type="Button" parent="Center/Card/Padding/Content"]
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.98039216, 0.9137255, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 text = "START YOUR QUEST"
 
-[node name="ControlsButton" type="Button" parent="Center/Card/Padding/Content" unique_id=55415187]
+[node name="ControlsButton" type="Button" parent="Center/Card/Padding/Content"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 text = "HOW TO PLAY"
 
-[node name="QuitButton" type="Button" parent="Center/Card/Padding/Content" unique_id=160667397]
+[node name="QuitButton" type="Button" parent="Center/Card/Padding/Content"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 text = "QUIT"
 
-[node name="ControlsCenter" type="CenterContainer" parent="." unique_id=1567243372]
+[node name="ControlsCenter" type="CenterContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -182,53 +182,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" type="PanelContainer" parent="ControlsCenter" unique_id=1406273397]
+[node name="Card" type="PanelContainer" parent="ControlsCenter"]
 custom_minimum_size = Vector2(480, 360)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="Padding" type="MarginContainer" parent="ControlsCenter/Card" unique_id=1234801267]
+[node name="Padding" type="MarginContainer" parent="ControlsCenter/Card"]
 layout_mode = 2
 theme_override_constants/margin_left = 34
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 34
 theme_override_constants/margin_bottom = 30
 
-[node name="Content" type="VBoxContainer" parent="ControlsCenter/Card/Padding" unique_id=109413324]
+[node name="Content" type="VBoxContainer" parent="ControlsCenter/Card/Padding"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Heading" type="Label" parent="ControlsCenter/Card/Padding/Content" unique_id=1945675867]
+[node name="Heading" type="Label" parent="ControlsCenter/Card/Padding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.9490196, 0.6666667, 1)
 theme_override_font_sizes/font_size = 26
 text = "HOW TO PLAY"
 horizontal_alignment = 1
 
-[node name="Movement" type="Label" parent="ControlsCenter/Card/Padding/Content" unique_id=1645130068]
+[node name="Movement" type="Label" parent="ControlsCenter/Card/Padding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
 text = "Move around with W A S D or the arrow keys."
-horizontal_alignment = 1
 autowrap_mode = 2
+horizontal_alignment = 1
 
-[node name="Goal" type="Label" parent="ControlsCenter/Card/Padding/Content" unique_id=1558664742]
+[node name="Goal" type="Label" parent="ControlsCenter/Card/Padding/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
 text = "Collect the bottles to add their deposit to your total."
-horizontal_alignment = 1
 autowrap_mode = 2
+horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="ControlsCenter/Card/Padding/Content" unique_id=1984640412]
+[node name="BackButton" type="Button" parent="ControlsCenter/Card/Padding/Content"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.98039216, 0.9137255, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 text = "BACK TO MENU"
 
 [connection signal="pressed" from="Center/Card/Padding/Content/PlayButton" to="." method="_on_play_pressed"]
