@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://sqc0235ofoob"]
 
 [ext_resource type="Texture2D" uid="uid://dv45s7sm8or8j" path="res://BottleSpriteSheet.png" id="1_gigqr"]
+[ext_resource type="Script" uid="uid://iyx2jn70ly3e" path="res://butelki.gd" id="1_q87ab"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q87ab"]
 atlas = ExtResource("1_gigqr")
@@ -21,6 +22,7 @@ animations = [{
 size = Vector2(15, 44)
 
 [node name="bottle" type="Area2D" unique_id=281860624]
+script = ExtResource("1_q87ab")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=124574311]
 position = Vector2(-1, 4)
@@ -31,3 +33,5 @@ animation = &"bootle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1691996495]
 position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_6870t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

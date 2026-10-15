@@ -3,6 +3,7 @@ extends Node
 # 1. Definicja flag bitowych za pomocą potęg dwójki (przesunięcie bitowe)
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
 const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
+var graczScena = preload("res://player.tscn")
 
 @export var spritesheet: Texture2D
 
@@ -78,3 +79,7 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 		# Uwaga: jeśli chcesz, aby kara -3 była niezależna od bazy, możesz dać np. value -= 3.0
 		
 	return value
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()

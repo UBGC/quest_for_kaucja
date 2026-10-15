@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dx7lww3mpb6cj"]
+
+[ext_resource type="Texture2D" uid="uid://bqbx7mf3if8x7" path="res://level1Icon.png" id="1_il3u1"]
+
+[node name="levelSelect" type="Node2D" unique_id=872475466]
+position = Vector2(3, 0)
+
+[node name="level1" type="Button" parent="." unique_id=1911182653]
+offset_left = 40.0
+offset_top = 39.0
+offset_right = 170.0
+offset_bottom = 146.0
+
+[node name="Sprite2D" type="Sprite2D" parent="level1" unique_id=959727455]
+position = Vector2(66, 55)
+texture = ExtResource("1_il3u1")
