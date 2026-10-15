@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_epypp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
-size = Vector2(69, 92)
+size = Vector2(69, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(804, 21)
@@ -23,11 +23,11 @@ texture = ExtResource("1_wtcfe")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1694449681]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=63590274]
-position = Vector2(751.5, 384)
+position = Vector2(751.5, 351)
 shape = SubResource("RectangleShape2D_q6r6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=201000248]
-position = Vector2(384, 420.5)
+position = Vector2(385, 350)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1359035656]
@@ -35,11 +35,11 @@ position = Vector2(961.5, 342)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="CharacterBody2D" parent="StaticBody2D" unique_id=1766430221 instance=ExtResource("2_epypp")]
+z_index = 2
 position = Vector2(247.00002, 525)
 scale = Vector2(2.3, 2.3)
 
 [node name="spawner" parent="." unique_id=249892475 instance=ExtResource("3_epypp")]
-z_index = 2
 position = Vector2(474, 410)
 
 [node name="spawner2" parent="." unique_id=832260033 instance=ExtResource("3_epypp")]

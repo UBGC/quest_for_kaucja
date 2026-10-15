@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dop4aaxcd68ho"]
+
+[ext_resource type="Texture2D" uid="uid://ku2u17rpi8se" path="res://BottleDropperSprite.png" id="1_jdfiw"]
+[ext_resource type="Script" uid="uid://8j43xjoawvly" path="res://people.gd" id="1_l3qhe"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1926127540]
+script = ExtResource("1_l3qhe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1082884331]
+texture = ExtResource("1_jdfiw")
