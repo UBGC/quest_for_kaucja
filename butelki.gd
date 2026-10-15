@@ -1,4 +1,5 @@
-extends Node
+class_name Bottle
+extends Area2D
 
 # 1. Definicja flag bitowych za pomocą potęg dwójki (przesunięcie bitowe)
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
@@ -6,6 +7,7 @@ const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
 var graczScena = preload("res://player.tscn")
 
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
+var value: float = 0.0
 
 # Baza danych 6 typów butelek (współrzędne na spritesheet w pikselach: Rect2(x, y, szerokość, wysokość))
 # Załóżmy, że każda ikonka butelki ma wymiary 32x64 piksele i leżą one w rzędzie obok siebie.
@@ -43,10 +45,14 @@ var bottle_types = [
 ]
 
 func _ready() -> void:
-	# Pętla testowa sprawdzająca czy losują się różne indeksy
-	for i in range(10):
-		var wylosowana_butelka = losuj_butelke()
-		print("Losowanie ", i + 1, " -> Wartość: ", wylosowana_butelka["value"], " PLN, Flagi: ", wylosowana_butelka["flags"])
+	var bottle_data := losuj_butelke()
+	value = float(bottle_data["value"])
+
+	var frames: SpriteFrames = $AnimatedSprite2D.sprite_frames.duplicate()
+	frames.set_frame(&"bootle", 0, bottle_data["texture"] as Texture2D)
+	$AnimatedSprite2D.sprite_frames = frames
+	losuj_butelke()
+
 func losuj_butelke() -> Dictionary:
 	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
 	var dane_butelki = bottle_types.pick_random()
@@ -81,5 +87,5 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 	return value
 
 
-func _on_body_entered(_body: Node2D) -> void:
-	queue_free()
+func _on_body_entered(_body: CharacterBody2D) -> void:
+	queue_free() #kuźwa załamię się projekt idzie tragicznie
