@@ -43,11 +43,10 @@ var bottle_types = [
 ]
 
 func _ready() -> void:
-	# Test losowania po uruchomieniu gry
-	var wylosowana_butelka = losuj_butelke()
-	print("Wylosowana wartość: ", wylosowana_butelka["value"], " PLN")
-	losuj_butelke()
-
+	# Pętla testowa sprawdzająca czy losują się różne indeksy
+	for i in range(10):
+		var wylosowana_butelka = losuj_butelke()
+		print("Losowanie ", i + 1, " -> Wartość: ", wylosowana_butelka["value"], " PLN, Flagi: ", wylosowana_butelka["flags"])
 func losuj_butelke() -> Dictionary:
 	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
 	var dane_butelki = bottle_types.pick_random()
