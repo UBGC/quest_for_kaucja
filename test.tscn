@@ -1,6 +1,3 @@
 [gd_scene format=3 uid="uid://dk08re0lt141s"]
 
 [node name="Node2D" type="Node2D" unique_id=1439156857]
-
-[node name="Node2D" type="Node2D" parent="." unique_id=354206197]
-position = Vector2(88, 56)

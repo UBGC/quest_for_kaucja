@@ -74,7 +74,7 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 	# Sprawdzamy, czy flaga KAUCYJNA jest ustawiona
 	if not (flags & FLAG_KAUCYJNA):
 		# Jeśli NIE jest kaucyjna, stosujemy karę -3 zł (lub ustawiamy sztywno -3)
-		value = -3.0 
+		value *= -3.0 
 		# Uwaga: jeśli chcesz, aby kara -3 była niezależna od bazy, możesz dać np. value -= 3.0
 		
 	return value
