@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://sqc0235ofoob" path="res://bootle.tscn" id="6_0s5r2"]
 [ext_resource type="AudioStream" uid="uid://c43jy61fbumjw" path="res://dzwieki/amen breaking my back.wav" id="6_7j8ne"]
+[ext_resource type="Script" path="res://level_exit.gd" id="7_progression"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idooy"]
 size = Vector2(32, 715)
@@ -17,6 +18,9 @@ size = Vector2(1175, 55)
 size = Vector2(1155, 391)
 
 [node name="Level 2" type="Node2D" unique_id=1353001692]
+script = ExtResource("7_progression")
+required_money = 25.0
+next_level_path = "res://level_3.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1583237123]
 position = Vector2(568, 325)

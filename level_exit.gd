@@ -1,36 +1,26 @@
-extends Area2D
+extends Node
 
-const REQUIRED_MONEY := 50.0
-const NEXT_LEVEL_PATH := "res://level_2.tscn"
+@export var required_money: float = 15.0
+@export_file("*.tscn") var next_level_path: String
 
-@onready var exit_visual: Node2D = $ExitVisual
-
-var is_open := false
+var is_transitioning := false
 
 
 func _ready() -> void:
 	global.money_changed.connect(_on_money_changed)
-	_update_open_state(global.money)
+	_on_money_changed(global.money)
 
 
 func _on_money_changed(value: float) -> void:
-	_update_open_state(value)
-
-
-func _update_open_state(value: float) -> void:
-	var should_open := value >= REQUIRED_MONEY
-	if should_open == is_open:
+	if is_transitioning or value < required_money:
 		return
 
-	is_open = should_open
-	exit_visual.visible = is_open
-	set_deferred("monitoring", is_open)
+	is_transitioning = true
+	call_deferred("_change_level")
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if not is_open or not body.is_in_group("player"):
-		return
-
-	var error := get_tree().change_scene_to_file(NEXT_LEVEL_PATH)
+func _change_level() -> void:
+	var error := get_tree().change_scene_to_file(next_level_path)
 	if error != OK:
-		push_error("Unable to load the next level: %s" % error_string(error))
+		is_transitioning = false
+		push_error("Nie można załadować następnego poziomu: %s" % error_string(error))
