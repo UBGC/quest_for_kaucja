@@ -1,0 +1,171 @@
+@tool
+extends Node
+class_name GDTUpdateInstaller
+
+# IMPORTANT: Do not use any GodotTogether classes here. 
+# This script must be independent
+
+const PLUGIN_DIR = "res://addons/GodotTogether"
+const SETTINGS_FILE = "settings.json"
+
+var zip_path: String = ""
+var zip: ZIPReader
+
+var settings_buf = []
+
+func _ready() -> void:
+	print("[GodotTogether] Initializing update installer...")
+	
+	for i in range(5): # Wait for shutdown
+		await get_tree().process_frame
+	
+	save_settings()
+	
+	print("[GodotTogether] Removing current plugin version")
+	remove_dir_recursive(PLUGIN_DIR, [".git"])
+	
+	unzip()
+	restore_settings()
+	finish()
+
+func get_zip_root() -> String:
+	return get_root_of_paths(zip.get_files())
+
+func unzip() -> void:
+	print("[GodotTogether] Writing files")
+	
+	var root = get_zip_root()
+	
+	print("[GodotTogether] Determined zip root: '%s'" % root)
+	
+	for file_path in zip.get_files():
+		if file_path.ends_with("/"): # Current entry is a directory
+			continue
+		
+		var buf = zip.read_file(file_path)
+		
+		var physical_path = PLUGIN_DIR + "/" + file_path.substr(root.length())
+		
+		ensure_dir_exists(physical_path)
+		
+		var file = FileAccess.open(physical_path, FileAccess.WRITE)
+		
+		if not file:
+			printerr("Unable to create file %s" % physical_path)
+			continue
+		
+		file.store_buffer(buf)
+		print(file_path)
+		
+	print("[GodotTogether] Update files extracted")
+
+func save_settings() -> void:
+	var settings_path = PLUGIN_DIR + "/" + SETTINGS_FILE
+	
+	if FileAccess.file_exists(settings_path):
+		print("[GodotTogether] Backing up settings")
+		
+		settings_buf = FileAccess.get_file_as_bytes(settings_path)
+
+func restore_settings() -> void:
+	var settings_path = PLUGIN_DIR + "/" + SETTINGS_FILE
+	
+	if not settings_buf.is_empty():
+		print("[GodotTogether] Restoring settings")
+		
+		var file = FileAccess.open(settings_path, FileAccess.WRITE)
+		
+		if not file:
+			printerr("Unable to restore settings file")
+			return
+			
+		if not file.store_buffer(settings_buf):
+			printerr("Unable to write settings")
+
+func validate() -> String:
+	var files = zip.get_files()
+	var root = get_zip_root()
+	
+	if files.is_empty():
+		return "Archive is empty"
+	
+	if not root + "plugin.cfg" in files:
+		return "Missing plugin manifest"
+	
+	return ""
+
+func open_zip(path: String) -> int:
+	zip = ZIPReader.new()
+	zip_path = path
+	return zip.open(path)
+
+func start() -> void:
+	EditorInterface.set_plugin_enabled("GodotTogether", false) # in case it failed in main
+	
+	var root = EditorInterface.get_base_control()
+	root.add_child(self)
+
+func wait_for_import() -> void:
+	var fs = EditorInterface.get_resource_filesystem()
+	
+	while fs.is_scanning() or fs.is_importing():
+		await get_tree().process_frame
+
+func finish() -> void:
+	print("[GodotTogether] Update complete")
+	zip.close()
+	
+	await get_tree().process_frame
+	
+	print("[GodotTogether] Restarting Godot")
+	
+	EditorInterface.restart_editor(true)
+	queue_free()
+	
+
+func alert(text: String) -> void:
+	var dial = AcceptDialog.new()
+	dial.dialog_text = text
+	dial.title = "GodotTogether"
+	EditorInterface.popup_dialog_centered(dial)
+
+static func get_root_of_paths(paths: Array) -> String:
+	if paths.is_empty():
+		return ""
+	
+	var first_root = paths[0].split("/")[0] + "/"
+	
+	for file_path: String in paths:
+		if not file_path.begins_with(first_root):
+			return ""
+	
+	return first_root
+
+static func ensure_dir_exists(path: String) -> int:
+	var dir = path.get_base_dir()
+	
+	if dir != "" and not DirAccess.dir_exists_absolute(dir):
+		return DirAccess.make_dir_recursive_absolute(dir)
+		
+	return OK
+
+static func remove_dir_recursive(path: String, ignore := []) -> void:
+	var dir = DirAccess.open(path)
+	
+	if not dir:
+		printerr("Unable to delete %s: %s" % [path, error_string(DirAccess.get_open_error())])
+		return
+	
+	for file in dir.get_files():
+		if file in ignore: 
+			continue
+		
+		dir.remove(file)
+	
+	for sub_dir in dir.get_directories():
+		if sub_dir in ignore:
+			continue
+		
+		remove_dir_recursive(path + "/" + sub_dir)
+	
+	dir.remove(".")

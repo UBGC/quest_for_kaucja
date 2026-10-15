@@ -1,0 +1,231 @@
+@tool
+extends VBoxContainer
+class_name GDTMenu
+
+var main: GodotTogether
+var gui: GodotTogetherGUI
+
+@onready var update_btn = $topBar/update
+@onready var version_warning = $topBar/versionWarning
+
+@onready var username_input = $sessionInit/pre/username
+@onready var session_init_cover = $sessionInit/cover
+@onready var session_cancel = $sessionInit/cover/vbox/btnCancel
+
+@onready var join_password = $sessionInit/start/join/password
+
+@onready var users: GDTUserList = $session/tabs/Users
+@onready var server_settings_tab = $"session/tabs/Server settings"
+
+@onready var host_settings = $sessionInit/start/host/settings
+
+func _ready() -> void:
+	await get_tree().process_frame
+	
+	if main:
+		main_menu()
+		
+		main.updater.update_detected.connect(_update_available, CONNECT_ONE_SHOT)
+		
+		main.client.disconnected.connect(func():
+			await get_tree().process_frame
+			session_start_menu("join")
+		)
+
+	if visuals_available():
+		set_session_init_cover()
+		check_engine_version()
+		username_input.text = GDTSettings.get_setting("username")
+		update_btn.visible = false
+
+func _update_available(update: GDTUpdateCheckResult) -> void:
+	update_btn.text = "Update to v.%s" % update.version
+	update_btn.visible = true
+	update_btn.pressed.connect(_query_update)
+	
+func _query_update() -> void:
+	if await gui.confirm("Download and install the latest update?"):
+		main.updater.begin_update()
+
+func _host() -> void:
+	if main:
+		var port = host_settings.port_input.value
+		var max_clients = host_settings.max_users_input.value
+		
+		set_session_init_cover("Starting server...")
+		session_cancel.visible = false
+		
+		#GDTSettings.set_setting("server/password", host_password.text)
+		#GDTSettings.set_setting("server/require_approval", $sessionInit/start/host/approveUsers.button_pressed)
+		
+		await RenderingServer.frame_post_draw
+		
+		var err = main.server.start_hosting(port, max_clients)
+		
+		if err:
+			set_session_init_cover()
+			gui.alert(GDTUtils.join([
+				"Unable to start server.",
+				"Make sure a GodotTogether server is not already running in another Godot instance",
+				"and no other application is using this port.",
+				"Error code: %s" % error_string(err),
+			], "\n"), "Failed to start server")
+			return
+		
+		server_settings_tab.load_settings()
+		main.dual.get_server_user().name = username_input.text
+
+	session_menu()
+	
+	$session/top/status.text = "You are hosting"
+	$session/top/end.text = "Stop server"
+
+func _join() -> void:
+	if main.client:
+		main.client.current_join_data.username = username_input.text
+		main.client.current_join_data.password = join_password.text
+		
+		var ip = $sessionInit/start/join/address/ip.text
+		var port = $sessionInit/start/join/address/port.value
+		
+		session_cancel.visible = true
+
+		set_session_init_cover("Connecting...")
+		
+		var err = main.client.join(ip, port, main.client.current_join_data)
+		
+		if err:
+			set_session_init_cover()
+			gui.alert(
+				"Error: %s. \nMake sure the IP and port is valid. \nSee output for more details" % error_string(err),
+				"Failed to start client"
+			)
+
+			return
+		
+		if not await main.client.connecting_finished:
+			if main.client.connection_cancelled:
+				set_session_init_cover()
+				return
+
+
+			set_session_init_cover()
+			gui.alert(
+				"Connection to %s:%s timed out. \nMake sure the IP and port is valid and the host's server \nis running and configured properly." % [ip, port],
+				"Failed to connect"
+			)
+
+			return
+
+	set_session_init_cover("Waiting for host's approval...")
+	
+	await main.client.auth_succeed
+
+	set_session_init_cover("Starting project download...")
+
+	while main.client.target_file_count != 0:
+		set_session_init_cover("Downloading files %s/%s" % [main.client.downloaded_file_count, main.client.target_file_count])
+		await main.client.file_received
+
+	_joined()
+
+func _joined() -> void:
+	session_menu()
+	
+	$session/top/status.text = "Connected"
+	$session/top/end.text = "Disconnect"
+
+func set_session_init_cover(text: String = "") -> void:
+	if text == "":
+		session_init_cover.hide()
+		return
+	
+	session_init_cover.get_node("vbox/title").text = text
+	session_init_cover.show()
+
+func end_session() -> void:
+	if main and main.is_session_active():
+		main.close_connection()
+	
+	main_menu()
+
+func session_menu() -> void:
+	set_session_init_cover()
+	$sessionInit.hide()
+	$session.show()
+
+func main_menu() -> void:
+	$sessionInit.show()
+	$sessionInit/pre.show()
+	
+	$sessionInit/start.hide()
+	$sessionInit/start/host.hide()
+	$sessionInit/start/join.hide()
+	$session.hide()
+	
+	host_settings.load_settings()
+
+func session_start_menu(tab: String = "") -> void:
+	set_session_init_cover()
+	
+	$sessionInit/start.show()
+	$sessionInit/pre.hide()
+	$sessionInit.show()
+	$session.hide()
+
+	if tab == "join":
+		$sessionInit/start/join.show()
+	elif tab == "host":
+		$sessionInit/start/host.show()
+
+	# Layout glitch fix
+	await get_tree().process_frame
+	$sessionInit/start.hide()
+	await get_tree().process_frame
+	$sessionInit/start.show()
+		
+func visuals_available() -> bool:
+	if not gui: 
+		return false
+	
+	return gui.visuals_available()
+
+func check_engine_version() -> void:
+	var info = Engine.get_version_info()
+	var supported_info = GodotTogether.SUPPORTED_ENGINE_VERSION
+	
+	if info["status"] != "stable":
+		version_warning.visible = true
+		version_warning.text = "Plugin only supported on Godot stable"
+		return
+	
+	if (
+		info["major"] != supported_info[0] or
+		info["minor"] != supported_info[1] or
+		info["patch"] != supported_info[2]
+	):
+		version_warning.visible = true
+		version_warning.text = "Plugin only supported on Godot %s.%s.%s" % [supported_info[0], supported_info[1], supported_info[2]]
+		return
+	
+	version_warning.visible = false
+
+func _on_username_text_changed(text: String) -> void:
+	if visuals_available():
+		GDTSettings.set_setting("username", text)
+
+func _on_btn_cancel_pressed() -> void:
+	if main:
+		main.close_connection()
+		set_session_init_cover()
+
+func _on_restart_pressed() -> void:
+	if main:
+		if main.server.is_active():
+			main.server.broadcast_restart()
+		else:
+			main.server.broadcast_restart.rpc_id(1)
+
+func _on_update_timeout() -> void:
+	if visuals_available():
+		$session/top/restart.visible = GDTSettings.get_setting("dev/restart_broadcast")
