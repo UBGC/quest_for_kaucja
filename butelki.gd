@@ -83,4 +83,4 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 
 
 func _on_body_entered(_body: CharacterBody2D) -> void:
-	queue_free()
+	queue_free() #kuźwa załamię się projekt idzie tragicznie
