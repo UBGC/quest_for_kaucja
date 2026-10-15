@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dk82c4rqoa6bt"]
+
+[ext_resource type="Texture2D" uid="uid://ku2u17rpi8se" path="res://BottleDropperSprite.png" id="1_ngild"]
+
+[node name="Node2D" type="Node2D" unique_id=249892475]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1155318961]
+texture = ExtResource("1_ngild")
