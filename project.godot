@@ -31,7 +31,6 @@ enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg")
 [global_group]
 
 player=""
-bootle=""
 
 [input]
 
