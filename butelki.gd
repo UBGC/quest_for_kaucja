@@ -46,6 +46,7 @@ func _ready() -> void:
 	# Test losowania po uruchomieniu gry
 	var wylosowana_butelka = losuj_butelke()
 	print("Wylosowana wartość: ", wylosowana_butelka["value"], " PLN")
+	losuj_butelke()
 
 func losuj_butelke() -> Dictionary:
 	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
@@ -81,5 +82,5 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 	return value
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
