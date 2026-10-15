@@ -1,6 +1,6 @@
 extends Node2D
 
-var spawnInterval = 4 #czas pomiedzy spawnieniem butelki
+var spawnInterval = 8 #czas pomiedzy spawnieniem butelki
 var bottleScene = preload("res://bootle.tscn")
 
 
