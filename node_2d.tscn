@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://kuoqj2h52ysj" path="res://level1BG.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_epypp"]
+[ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_epypp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 92)
@@ -36,3 +37,16 @@ shape = SubResource("RectangleShape2D_0hol4")
 [node name="CharacterBody2D" parent="StaticBody2D" unique_id=1766430221 instance=ExtResource("2_epypp")]
 position = Vector2(247.00002, 525)
 scale = Vector2(2.3, 2.3)
+
+[node name="spawner" parent="." unique_id=249892475 instance=ExtResource("3_epypp")]
+z_index = 2
+position = Vector2(474, 410)
+
+[node name="spawner2" parent="." unique_id=832260033 instance=ExtResource("3_epypp")]
+position = Vector2(741, 381)
+
+[node name="spawner3" parent="." unique_id=1473931735 instance=ExtResource("3_epypp")]
+position = Vector2(962, 363)
+
+[node name="spawner4" parent="." unique_id=240140722 instance=ExtResource("3_epypp")]
+position = Vector2(79, 442)
