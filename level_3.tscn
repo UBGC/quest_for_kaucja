@@ -16,8 +16,8 @@ size = Vector2(32, 633)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=404758452]
 z_index = -7
-position = Vector2(482.00006, -538.2501)
-scale = Vector2(0.28634754, 0.7971477)
+position = Vector2(164.25006, -538.2501)
+scale = Vector2(0.39902484, 0.7971477)
 texture = ExtResource("1_16pka")
 
 [node name="CharacterBody2D" parent="." unique_id=1766430221 instance=ExtResource("2_j8bo8")]
