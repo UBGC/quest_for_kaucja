@@ -29,5 +29,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_money")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9098039, 0.95686275, 0.8392157, 1)
 theme_override_font_sizes/font_size = 20
-text = "MONEY  0.00 PLN"
+text = "KAUCJA  0.00 zł"
 script = ExtResource("1_df67t")

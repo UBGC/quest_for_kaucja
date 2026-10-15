@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dv6v054kv86br" path="res://dzwieki/insanity.wav" id="4_1jdk1"]
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_6p2dc"]
 [ext_resource type="Script" path="res://level_exit.gd" id="6_progression"]
+[ext_resource type="PackedScene" path="res://level_intro.tscn" id="7_intro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(1194, 363)
@@ -17,6 +18,10 @@ size = Vector2(32, 633)
 script = ExtResource("6_progression")
 required_money = 35.0
 next_level_path = "res://level_4.tscn"
+
+[node name="LevelIntro" parent="." instance=ExtResource("7_intro")]
+location_title = "Poziom 3 — Radiostacja"
+dialogue = "Ta drewniana wieża pamięta rok 1939 i prowokację gliwicką — jeden z pretekstów do napaści na Polskę. Zbieraj uważnie: pamięć też warto chronić."
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=404758452]
 z_index = -7

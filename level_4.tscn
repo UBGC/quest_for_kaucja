@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_xcfcc"]
 [ext_resource type="Script" uid="uid://bstejmi2djhna" path="res://level_exit.gd" id="4_progression"]
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_l45re"]
+[ext_resource type="PackedScene" path="res://level_intro.tscn" id="6_intro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(1266, 135.82321)
@@ -19,6 +20,10 @@ size = Vector2(2061.8608, 549)
 script = ExtResource("4_progression")
 required_money = 50.0
 next_level_path = "res://end.tscn"
+
+[node name="LevelIntro" parent="." instance=ExtResource("6_intro")]
+location_title = "Poziom 4 — Centrum przesiadkowe"
+dialogue = "Gliwice zawsze były w ruchu. To centrum łączy miejskie drogi i podróżnych — pomóż zadbać o czystszy przystanek dla wszystkich."
 
 [node name="CharacterBody2D" parent="." unique_id=1766430221 instance=ExtResource("1_na6m6")]
 z_index = 4

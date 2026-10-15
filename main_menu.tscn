@@ -131,7 +131,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7294118, 0.8352941, 0.6901961, 1)
 theme_override_font_sizes/font_size = 16
-text = "CLEAN STREETS. BIG ADVENTURES."
+text = "CZYSTE ULICE. WIELKA PRZYGODA."
 horizontal_alignment = 1
 
 [node name="Separator" type="HSeparator" parent="Center/Card/Padding/Content" unique_id=1054905786]
@@ -141,7 +141,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.80784315, 0.85882354, 0.7764706, 1)
 theme_override_font_sizes/font_size = 17
-text = "Collect bottles and earn your deposit."
+text = "Zbieraj butelki, odzyskuj kaucję i odkrywaj Gliwice."
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="Center/Card/Padding/Content" unique_id=1194586378]
@@ -153,7 +153,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "START YOUR QUEST"
+text = "ROZPOCZNIJ PRZYGODĘ"
 
 [node name="ControlsButton" type="Button" parent="Center/Card/Padding/Content" unique_id=114618943]
 custom_minimum_size = Vector2(0, 52)
@@ -162,7 +162,7 @@ theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "HOW TO PLAY"
+text = "JAK GRAĆ"
 
 [node name="QuitButton" type="Button" parent="Center/Card/Padding/Content" unique_id=711499626]
 custom_minimum_size = Vector2(0, 48)
@@ -171,7 +171,7 @@ theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "QUIT"
+text = "WYJDŹ"
 
 [node name="ControlsCenter" type="CenterContainer" parent="." unique_id=890615374]
 visible = false
@@ -202,14 +202,14 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.9490196, 0.6666667, 1)
 theme_override_font_sizes/font_size = 26
-text = "HOW TO PLAY"
+text = "JAK GRAĆ"
 horizontal_alignment = 1
 
 [node name="Movement" type="Label" parent="ControlsCenter/Card/Padding/Content" unique_id=1210472760]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
-text = "Move around with W A S D or the arrow keys."
+text = "Poruszaj się klawiszami W, A, S, D lub strzałkami."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -217,7 +217,7 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8862745, 0.9254902, 0.84705883, 1)
 theme_override_font_sizes/font_size = 18
-text = "Collect the bottles to add their deposit to your total."
+text = "Zbieraj butelki, by doliczyć ich wartość do swojej kaucji."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -229,7 +229,7 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = "BACK TO MENU"
+text = "WRÓĆ DO MENU"
 
 [connection signal="pressed" from="Center/Card/Padding/Content/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Center/Card/Padding/Content/ControlsButton" to="." method="_on_controls_pressed"]

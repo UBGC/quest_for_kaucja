@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="4_hud"]
 [ext_resource type="AudioStream" uid="uid://x5bgrm4xrnx0" path="res://dzwieki/drumming and bassing it.wav" id="5_q6r6c"]
 [ext_resource type="Script" uid="uid://bstejmi2djhna" path="res://level_exit.gd" id="6_progression"]
+[ext_resource type="PackedScene" path="res://level_intro.tscn" id="7_intro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 26)
@@ -24,6 +25,10 @@ script = ExtResource("6_progression")
 next_level_path = "res://level_2.tscn"
 
 [node name="HUD" parent="." unique_id=827329789 instance=ExtResource("4_hud")]
+
+[node name="LevelIntro" parent="." instance=ExtResource("7_intro")]
+location_title = "Poziom 1 — Park Chrobrego"
+dialogue = "W cieniu parkowych drzew łatwo zapomnieć, że tuż obok tętni miasto. Każda odzyskana butelka to mały ukłon dla zielonych Gliwic."
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1877307436]
 position = Vector2(576, 324.00003)
