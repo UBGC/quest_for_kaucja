@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="5_0s5r2"]
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_n7ypv"]
 [ext_resource type="PackedScene" uid="uid://sqc0235ofoob" path="res://bootle.tscn" id="6_0s5r2"]
+[ext_resource type="AudioStream" uid="uid://c43jy61fbumjw" path="res://dzwieki/amen breaking my back.wav" id="6_7j8ne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idooy"]
 size = Vector2(32, 715)
@@ -74,5 +75,9 @@ position = Vector2(1678, -4)
 [node name="spawner2" parent="." unique_id=1906143129 instance=ExtResource("5_0s5r2")]
 position = Vector2(926, 409)
 scale = Vector2(0.5, 0.5)
+
+[node name="MUZYKA2" type="AudioStreamPlayer2D" parent="." unique_id=343226653]
+stream = ExtResource("6_7j8ne")
+autoplay = true
 
 [connection signal="body_entered" from="CharacterBody2D2" to="CharacterBody2D2" method="_on_body_entered"]
