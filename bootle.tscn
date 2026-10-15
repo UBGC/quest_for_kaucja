@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://sqc0235ofoob"]
+
+[ext_resource type="Texture2D" uid="uid://dv45s7sm8or8j" path="res://BottleSpriteSheet.png" id="1_gigqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q87ab"]
+atlas = ExtResource("1_gigqr")
+region = Rect2(0, 0, 13, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c61l3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q87ab")
+}],
+"loop": 1,
+"name": &"bootle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6870t"]
+size = Vector2(34, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(40, 76)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1872648464]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310657441]
+position = Vector2(-1, 4)
+scale = Vector2(3.1923077, 3.5555553)
+sprite_frames = SubResource("SpriteFrames_c61l3")
+animation = &"bootle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=604640274]
+position = Vector2(-2, 4)
+shape = SubResource("RectangleShape2D_6870t")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1347757707]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=294127758 groups=["bootle"]]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 4)
+shape = SubResource("RectangleShape2D_rj586")

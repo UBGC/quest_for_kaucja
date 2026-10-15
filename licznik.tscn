@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://vo0to8od2fjl"]
+
+[ext_resource type="Script" uid="uid://hae6efscxunp" path="res://button.gd" id="1_df67t"]
+
+[node name="Label" type="Label" unique_id=1518963008]
+offset_right = 200.0
+offset_bottom = 102.0
+
+[node name="Button" type="Button" parent="." unique_id=1879392851]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 103.0
+script = ExtResource("1_df67t")

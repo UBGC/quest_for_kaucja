@@ -17,19 +17,25 @@ func _physics_process(delta: float) -> void:
 )
 	if direction.y == -1:
 		velocity.y = -1 * SPEED
+		animated_sprited_2D.play("walk")
 	elif direction.y == 1:
 		velocity.y = SPEED
+		animated_sprited_2D.play("walk")
 	else:
 		velocity.y = 0
 	if direction.x == -1:
 		velocity.x = -1 * SPEED
+		animated_sprited_2D.play("walk")
+		animated_sprited_2D.flip_h = false
 	elif direction.x == 1:
 		velocity.x = SPEED
+		animated_sprited_2D.play("walk")
+		animated_sprited_2D.flip_h = true
 	else:
 		velocity.x = 0
+
+	if direction.x == 0 and direction.y == 0:
 		animated_sprited_2D.play("idle")
-
-
 
 	move_and_slide()
 

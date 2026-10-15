@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://kuoqj2h52ysj" path="res://level1BG.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_epypp"]
+[ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="3_0hol4"]
+[ext_resource type="Script" uid="uid://hae6efscxunp" path="res://button.gd" id="4_q6r6c"]
+[ext_resource type="PackedScene" uid="uid://sqc0235ofoob" path="res://bootle.tscn" id="5_kdubu"]
+[ext_resource type="Texture2D" uid="uid://dv45s7sm8or8j" path="res://BottleSpriteSheet.png" id="6_d21ai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 92)
@@ -12,7 +16,49 @@ size = Vector2(804, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(375, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idooy"]
+size = Vector2(1147, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xodl8"]
+size = Vector2(37, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q87ab"]
+atlas = ExtResource("6_d21ai")
+region = Rect2(0, 0, 13, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c61l3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q87ab")
+}],
+"loop": 1,
+"name": &"bootle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6870t"]
+size = Vector2(34, 70)
+
 [node name="Level1" type="Node2D" unique_id=453797874]
+
+[node name="Label" parent="." unique_id=1518963008 instance=ExtResource("3_0hol4")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 1.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="Button2" type="Button" parent="Label" unique_id=1879392851]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_q6r6c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1877307436]
 position = Vector2(576, 324.00003)
@@ -36,3 +82,41 @@ shape = SubResource("RectangleShape2D_0hol4")
 [node name="CharacterBody2D" parent="StaticBody2D" unique_id=1766430221 instance=ExtResource("2_epypp")]
 position = Vector2(247.00002, 525)
 scale = Vector2(2.3, 2.3)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=779515684]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=403972636]
+position = Vector2(581.5, 663)
+shape = SubResource("RectangleShape2D_idooy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1423896123]
+position = Vector2(582, -15)
+shape = SubResource("RectangleShape2D_idooy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2073544534]
+position = Vector2(-9.5, 321)
+shape = SubResource("RectangleShape2D_xodl8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1834520667]
+position = Vector2(1167, 325)
+shape = SubResource("RectangleShape2D_xodl8")
+
+[node name="CharacterBody2D" parent="." unique_id=1872648464 instance=ExtResource("5_kdubu")]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=310657441]
+position = Vector2(-1, 4)
+scale = Vector2(3.1923077, 3.5555553)
+sprite_frames = SubResource("SpriteFrames_c61l3")
+animation = &"bootle"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=604640274]
+position = Vector2(-2, 4)
+shape = SubResource("RectangleShape2D_6870t")
+
+[node name="Area2D2" type="Area2D" parent="CharacterBody2D" unique_id=1347757707]
+position = Vector2(248, 532)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1736984461]
+position = Vector2(243, 536)
