@@ -12,22 +12,22 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q87ab")
 }],
-"loop": true,
+"loop": 1,
 "name": &"bootle",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6870t"]
-size = Vector2(12, 21)
+size = Vector2(15, 44)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1872648464]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310657441]
-position = Vector2(1.25, 1.5)
-scale = Vector2(1.1923077, 1.1666666)
+position = Vector2(-1, 4)
+scale = Vector2(3.1923077, 3.5555553)
 sprite_frames = SubResource("SpriteFrames_c61l3")
 animation = &"bootle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=604640274]
-position = Vector2(1, 1.5)
+position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_6870t")
