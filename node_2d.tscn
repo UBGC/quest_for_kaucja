@@ -35,4 +35,4 @@ shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="CharacterBody2D" parent="StaticBody2D" unique_id=1766430221 instance=ExtResource("2_epypp")]
 position = Vector2(247.00002, 525)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2.3, 2.3)
