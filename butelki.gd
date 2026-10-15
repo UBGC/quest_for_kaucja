@@ -10,12 +10,12 @@ var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 # Załóżmy, że każda ikonka butelki ma wymiary 32x64 piksele i leżą one w rzędzie obok siebie.
 var bottle_types = [
 	{
-		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
+		"flags": FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
 		"base_value": 1.0, 
 		"region": Rect2(0, 0, 13, 18)
 	},
 	{
-		"flags": FLAG_SZKLANA,                 # Tylko Szklana (1)
+		"flags": 0,                 # Tylko Szklana (1)
 		"base_value": 1.0,
 		"region": Rect2(13, 0, 13, 18)
 	},
@@ -25,7 +25,7 @@ var bottle_types = [
 		"region": Rect2(26, 0, 13, 18)
 	},
 	{
-		"flags": 0,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
+		"flags": FLAG_SZKLANA,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
 		"base_value": 1.0,
 		"region": Rect2(39, 0, 13, 18)
 	},
