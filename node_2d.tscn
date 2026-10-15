@@ -5,20 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_epypp"]
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="4_hud"]
 [ext_resource type="AudioStream" uid="uid://x5bgrm4xrnx0" path="res://dzwieki/drumming and bassing it.wav" id="5_q6r6c"]
-[ext_resource type="Script" path="res://level_exit.gd" id="6_progression"]
+[ext_resource type="Script" uid="uid://bstejmi2djhna" path="res://level_exit.gd" id="6_progression"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 26)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(75.92554, 331)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(804, 21)
+size = Vector2(1238, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(375, 10)
 
 [node name="Level1" type="Node2D" unique_id=453797874]
 script = ExtResource("6_progression")
-required_money = 15.0
 next_level_path = "res://level_2.tscn"
 
 [node name="HUD" parent="." unique_id=827329789 instance=ExtResource("4_hud")]
@@ -34,8 +36,20 @@ texture = ExtResource("1_wtcfe")
 position = Vector2(751.5, 351)
 shape = SubResource("RectangleShape2D_q6r6c")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/CollisionShape2D3" unique_id=1463853822]
+position = Vector2(410.46277, 146.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/CollisionShape2D3/CollisionShape2D" unique_id=1161327749]
+position = Vector2(-1168.9628, 9.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=201000248]
 position = Vector2(385, 350)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/CollisionShape2D" unique_id=262874831]
+position = Vector2(155, 312)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1359035656]

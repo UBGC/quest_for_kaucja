@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dmw0hytkoqjp0"]
+
+[ext_resource type="Texture2D" uid="uid://bycawk2a85f65" path="res://ENDWriting.png" id="1_n735c"]
+
+[node name="end" type="Node2D" unique_id=663526721]
+position = Vector2(337, 56)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166389809]
+z_index = 6
+position = Vector2(226.74997, 81.5)
+scale = Vector2(3.278894, 3.810345)
+texture = ExtResource("1_n735c")
+
+[node name="Label" type="Label" parent="." unique_id=2063649674]
+offset_left = -81.0
+offset_top = 288.0
+offset_right = 579.0
+offset_bottom = 378.0
+theme_override_font_sizes/font_size = 20
+text = "GRATUJACJE!
+ Zdobyłeś wystarczająco pieniędzy aby kupić hulajnogę elektryczną, 
+której nazwy nie wolno wymawiać"
