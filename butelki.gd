@@ -72,19 +72,19 @@ func losuj_butelke() -> Dictionary:
 	}
 
 func oblicz_wartosc(flags: int, base_value: float) -> float:
-	var value = base_value
+	var obliczona_wartosc = base_value
 	
 	# Sprawdzamy, czy flaga SZKLANA jest ustawiona (operacja bitowa AND: &)
 	if flags & FLAG_SZKLANA:
-		value *= 2.0 # Wartość dwukrotnie wyższa
+		obliczona_wartosc *= 2.0 # Wartość dwukrotnie wyższa
 		
 	# Sprawdzamy, czy flaga KAUCYJNA jest ustawiona
 	if not (flags & FLAG_KAUCYJNA):
 		# Jeśli NIE jest kaucyjna, stosujemy karę -3 zł (lub ustawiamy sztywno -3)
-		value *= -3.0 
+		obliczona_wartosc *= -3.0 
 		# Uwaga: jeśli chcesz, aby kara -3 była niezależna od bazy, możesz dać np. value -= 3.0
 		
-	return value
+	return obliczona_wartosc
 
 
 func _on_body_entered(_body: CharacterBody2D) -> void:

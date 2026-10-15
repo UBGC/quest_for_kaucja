@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d0a5cohit7vo"]
+
+[ext_resource type="Texture2D" uid="uid://bpe26vi3bqvrl" path="res://level3BG.png" id="1_16pka"]
+[ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_j8bo8"]
+[ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_1jdk1"]
+[ext_resource type="AudioStream" uid="uid://dv6v054kv86br" path="res://dzwieki/insanity.wav" id="4_1jdk1"]
+[ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="5_6p2dc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(1194, 363)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(32, 633)
+
+[node name="level3" type="Node2D" unique_id=296519975]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=404758452]
+z_index = -7
+position = Vector2(164.25006, -538.2501)
+scale = Vector2(0.39902484, 0.7971477)
+texture = ExtResource("1_16pka")
+
+[node name="CharacterBody2D" parent="." unique_id=1766430221 instance=ExtResource("2_j8bo8")]
+z_index = 4
+position = Vector2(924, 586)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=882570077]
+position = Vector2(-335, -345.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714755281]
+position = Vector2(1157, 463)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D" unique_id=650707332]
+position = Vector2(-1183, -71.5)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="spawner" parent="." unique_id=249892475 instance=ExtResource("3_1jdk1")]
+position = Vector2(302, 589)
+
+[node name="spawner" parent="spawner" unique_id=2113043952 instance=ExtResource("3_1jdk1")]
+position = Vector2(171, -16)
+
+[node name="spawner" parent="spawner/spawner" unique_id=30827765 instance=ExtResource("3_1jdk1")]
+position = Vector2(146, 8)
+
+[node name="spawner" parent="spawner/spawner/spawner" unique_id=1936027620 instance=ExtResource("3_1jdk1")]
+position = Vector2(-466, 2)
+
+[node name="MUZYKA3" type="AudioStreamPlayer2D" parent="." unique_id=253408352]
+stream = ExtResource("4_1jdk1")
+
+[node name="Label" parent="." unique_id=861437437 instance=ExtResource("5_6p2dc")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=103324206]
+position = Vector2(573, 834)
+shape = SubResource("RectangleShape2D_g4v7s")

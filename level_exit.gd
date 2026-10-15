@@ -1,6 +1,6 @@
 extends Area2D
 
-const REQUIRED_MONEY := 50.0
+const REQUIRED_MONEY := 0.0
 const NEXT_LEVEL_PATH := "res://level_2.tscn"
 
 @onready var exit_visual: Node2D = $ExitVisual
