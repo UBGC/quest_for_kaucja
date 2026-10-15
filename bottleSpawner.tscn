@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dk82c4rqoa6bt"]
 
 [ext_resource type="Texture2D" uid="uid://ku2u17rpi8se" path="res://BottleDropperSprite.png" id="1_ngild"]
-[ext_resource type="Script" uid="uid://bitg7voxsd12u" path="res://butelkaSpawner.gd" id="1_xuxvt"]
+[ext_resource type="Script" uid="uid://c654c5h6y25na" path="res://butelkaSpawner.gd" id="1_xuxvt"]
 
 [node name="spawner" type="Node2D" unique_id=249892475]
 script = ExtResource("1_xuxvt")
 
-[node name="spawnerSprite" type="Sprite2D" parent="." unique_id=1155318961]
-position = Vector2(0, 1.9073486e-06)
-scale = Vector2(4.1160717, 3.5397727)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1293501427]
+position = Vector2(0, 9.536743e-07)
+scale = Vector2(2.357143, 2)
 texture = ExtResource("1_ngild")

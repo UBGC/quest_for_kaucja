@@ -2,15 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://bqbx7mf3if8x7" path="res://level1Icon.png" id="1_il3u1"]
 [ext_resource type="Texture2D" uid="uid://2buyjupkpgyp" path="res://level2Icon.png" id="2_vomi7"]
+[ext_resource type="Texture2D" uid="uid://3fntukakw01x" path="res://mainMenuLogoSprite.png" id="3_wevku"]
+[ext_resource type="Texture2D" uid="uid://bg2gqx20bbe2s" path="res://mainMenuBG.png" id="4_apu6u"]
 
 [node name="levelSelect" type="Node2D" unique_id=872475466]
-position = Vector2(3, 0)
+position = Vector2(-3, 179)
 
 [node name="level1" type="Button" parent="." unique_id=1911182653]
 offset_left = 40.0
 offset_top = 39.0
 offset_right = 170.0
 offset_bottom = 146.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="level1" unique_id=959727455]
 position = Vector2(66, 55)
@@ -21,8 +24,28 @@ offset_left = 265.0
 offset_top = 42.0
 offset_right = 364.0
 offset_bottom = 143.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="level2" unique_id=883501039]
 position = Vector2(42.500015, 52.999992)
 scale = Vector2(1.0238096, 0.9661016)
 texture = ExtResource("2_vomi7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1175487340]
+position = Vector2(478, -77)
+scale = Vector2(3.0046086, 3.4705882)
+texture = ExtResource("3_wevku")
+
+[node name="Button" type="Button" parent="." unique_id=559043060]
+offset_left = 441.0
+offset_top = 42.0
+offset_right = 541.0
+offset_bottom = 144.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button" unique_id=1924343817]
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=960758066]
+z_index = -5
+position = Vector2(581, 141.375)
+scale = Vector2(4.6533866, 5.294716)
+texture = ExtResource("4_apu6u")
