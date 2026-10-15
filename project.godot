@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Quest for Kaucja"
 run/main_scene="uid://dk08re0lt141s"
-config/features=PackedStringArray("4.7", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -27,6 +27,10 @@ project/assembly_name="Quest for Kaucja"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GodotTogether/plugin.cfg")
+
+[global_group]
+
+player=""
 
 [input]
 
