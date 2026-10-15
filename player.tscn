@@ -65,13 +65,12 @@ size = Vector2(28, 46.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(31, 50)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1766430221]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1766430221 groups=["player"]]
 script = ExtResource("1_vfg1r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1023380680]
 sprite_frames = SubResource("SpriteFrames_sweqy")
-animation = &"idle"
-autoplay = "idle"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=861288820]
 position = Vector2(1, 0)
@@ -90,4 +89,4 @@ visibility_layer = 2
 position = Vector2(-1.5, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -4,6 +4,7 @@ extends Node
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
 const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
 var graczScena = preload("res://player.tscn")
+var value: float = 0.0
 
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 
@@ -11,12 +12,12 @@ var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 # Załóżmy, że każda ikonka butelki ma wymiary 32x64 piksele i leżą one w rzędzie obok siebie.
 var bottle_types = [
 	{
-		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
+		"flags": FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
 		"base_value": 1.0, 
 		"region": Rect2(0, 0, 13, 18)
 	},
 	{
-		"flags": FLAG_SZKLANA,                 # Tylko Szklana (1)
+		"flags": 0,                 # Tylko Szklana (1)
 		"base_value": 1.0,
 		"region": Rect2(13, 0, 13, 18)
 	},
@@ -26,7 +27,7 @@ var bottle_types = [
 		"region": Rect2(26, 0, 13, 18)
 	},
 	{
-		"flags": 0,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
+		"flags": FLAG_SZKLANA,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
 		"base_value": 1.0,
 		"region": Rect2(39, 0, 13, 18)
 	},
@@ -43,11 +44,11 @@ var bottle_types = [
 ]
 
 func _ready() -> void:
-	# Test losowania po uruchomieniu gry
-	var wylosowana_butelka = losuj_butelke()
-	print("Wylosowana wartość: ", wylosowana_butelka["value"], " PLN")
-	losuj_butelke()
-
+	value = losuj_butelke()["value"]
+	# Pętla testowa sprawdzająca czy losują się różne indeksy
+	for i in range(10):
+		var wylosowana_butelka = losuj_butelke()
+		print("Losowanie ", i + 1, " -> Wartość: ", wylosowana_butelka["value"], " PLN, Flagi: ", wylosowana_butelka["flags"])
 func losuj_butelke() -> Dictionary:
 	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
 	var dane_butelki = bottle_types.pick_random()
