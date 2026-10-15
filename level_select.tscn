@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dx7lww3mpb6cj"]
 
 [ext_resource type="Texture2D" uid="uid://bqbx7mf3if8x7" path="res://level1Icon.png" id="1_il3u1"]
+[ext_resource type="Texture2D" uid="uid://2buyjupkpgyp" path="res://level2Icon.png" id="2_vomi7"]
 
 [node name="levelSelect" type="Node2D" unique_id=872475466]
 position = Vector2(3, 0)
@@ -14,3 +15,14 @@ offset_bottom = 146.0
 [node name="Sprite2D" type="Sprite2D" parent="level1" unique_id=959727455]
 position = Vector2(66, 55)
 texture = ExtResource("1_il3u1")
+
+[node name="level2" type="Button" parent="." unique_id=897800854]
+offset_left = 265.0
+offset_top = 42.0
+offset_right = 364.0
+offset_bottom = 143.0
+
+[node name="Sprite2D" type="Sprite2D" parent="level2" unique_id=883501039]
+position = Vector2(49.500004, 50.999996)
+scale = Vector2(0.8333334, 0.8644067)
+texture = ExtResource("2_vomi7")
