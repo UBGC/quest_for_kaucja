@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c43jy61fbumjw"
+path="res://.godot/imported/amen breaking my back.wav-15ade856640d8cf93ca382fb5a89defa.sample"
+
+[deps]
+
+source_file="res://dzwieki/amen breaking my back.wav"
+dest_files=["res://.godot/imported/amen breaking my back.wav-15ade856640d8cf93ca382fb5a89defa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

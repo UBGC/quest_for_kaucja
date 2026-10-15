@@ -13,5 +13,6 @@ func petlaSpawnu():
 		var bottle = bottleScene.instantiate()
 		add_child(bottle)
 		bottle.global_position = global_position + Vector2(0, 20)
+		await bottle.tree_exited
 		await get_tree().create_timer(randf_range(1.0, spawnInterval)).timeout #losowy czas pomiedzy spawnami butelek
 		

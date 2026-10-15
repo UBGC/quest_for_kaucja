@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://x5bgrm4xrnx0"
+path="res://.godot/imported/drumming and bassing it.wav-7a3a310fe8e4159e43f6d5d49252417a.sample"
+
+[deps]
+
+source_file="res://dzwieki/drumming and bassing it.wav"
+dest_files=["res://.godot/imported/drumming and bassing it.wav-7a3a310fe8e4159e43f6d5d49252417a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
