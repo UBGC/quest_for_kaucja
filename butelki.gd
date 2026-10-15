@@ -82,5 +82,5 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 	return value
 
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(_body: CharacterBody2D) -> void:
 	queue_free()

@@ -23,6 +23,6 @@ offset_right = 364.0
 offset_bottom = 143.0
 
 [node name="Sprite2D" type="Sprite2D" parent="level2" unique_id=883501039]
-position = Vector2(49.500004, 50.999996)
-scale = Vector2(0.8333334, 0.8644067)
+position = Vector2(42.500015, 52.999992)
+scale = Vector2(1.0238096, 0.9661016)
 texture = ExtResource("2_vomi7")
