@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://sqc0235ofoob"]
 
 [ext_resource type="Texture2D" uid="uid://dv45s7sm8or8j" path="res://BottleSpriteSheet.png" id="1_gigqr"]
+[ext_resource type="Script" uid="uid://iyx2jn70ly3e" path="res://butelki.gd" id="1_q87ab"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q87ab"]
 atlas = ExtResource("1_gigqr")
@@ -18,29 +19,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6870t"]
-size = Vector2(34, 70)
+size = Vector2(15, 44)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
-size = Vector2(40, 76)
+[node name="bottle" type="Area2D" unique_id=281860624]
+script = ExtResource("1_q87ab")
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1872648464]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310657441]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=124574311]
 position = Vector2(-1, 4)
 scale = Vector2(3.1923077, 3.5555553)
 sprite_frames = SubResource("SpriteFrames_c61l3")
 animation = &"bootle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=604640274]
-position = Vector2(-2, 4)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1691996495]
+position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_6870t")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1347757707]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=294127758 groups=["bootle"]]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-2, 4)
-shape = SubResource("RectangleShape2D_rj586")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

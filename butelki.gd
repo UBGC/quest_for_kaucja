@@ -3,6 +3,7 @@ extends Node
 # 1. Definicja flag bitowych za pomocą potęg dwójki (przesunięcie bitowe)
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
 const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
+var graczScena = preload("res://player.tscn")
 
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 
@@ -45,6 +46,7 @@ func _ready() -> void:
 	# Test losowania po uruchomieniu gry
 	var wylosowana_butelka = losuj_butelke()
 	print("Wylosowana wartość: ", wylosowana_butelka["value"], " PLN")
+	losuj_butelke()
 
 func losuj_butelke() -> Dictionary:
 	# 1. Losujemy jeden z 6 słowników z tablicy (Godot 4 ma wygodną funkcję pick_random())
@@ -78,3 +80,7 @@ func oblicz_wartosc(flags: int, base_value: float) -> float:
 		# Uwaga: jeśli chcesz, aby kara -3 była niezależna od bazy, możesz dać np. value -= 3.0
 		
 	return value
+
+
+func _on_body_entered(_body: Node2D) -> void:
+	queue_free()
