@@ -5,4 +5,4 @@ func _ready() -> void:
 	global.money_changed.connect(_update_money)
 
 func _update_money(value: float) -> void:
-	text = "KAUCJA  %.2f zł" % value
+	text = "MONEY  %.2f PLN" % value
