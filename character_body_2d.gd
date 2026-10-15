@@ -21,6 +21,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is Bottle:
-		global.money += area.value
-		area.queue_free()
+	global.money += area.value
+	area.queue_free()

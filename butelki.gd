@@ -4,6 +4,7 @@ extends Node
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
 const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
 var graczScena = preload("res://player.tscn")
+var value: float = 0.0
 
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
 
@@ -43,6 +44,7 @@ var bottle_types = [
 ]
 
 func _ready() -> void:
+	value = losuj_butelke()["value"]
 	# Pętla testowa sprawdzająca czy losują się różne indeksy
 	for i in range(10):
 		var wylosowana_butelka = losuj_butelke()
