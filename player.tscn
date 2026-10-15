@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://o7ao54vssjq2"]
+
+[ext_resource type="Script" uid="uid://dsqfx4nryo1h1" path="res://Skrypt/character_body_2d.gd" id="1_vfg1r"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1766430221]
+script = ExtResource("1_vfg1r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=910735538]
