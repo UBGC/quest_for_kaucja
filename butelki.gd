@@ -14,32 +14,32 @@ var value: float = 0.0
 var bottle_types = [
 	{
 		"flags": FLAG_KAUCYJNA, # Szklana (1) + Kaucyjna (2) = 3
-		"base_value": 1.0, 
+		"base_value": 0.5, 
 		"region": Rect2(0, 0, 13, 18)
 	},
 	{
 		"flags": 0,                 # Tylko Szklana (1)
-		"base_value": 1.0,
+		"base_value": 0.5,
 		"region": Rect2(13, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_KAUCYJNA,                # Tylko Kaucyjna (2)
-		"base_value": 1.0,
+		"base_value": 0.5,
 		"region": Rect2(26, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA,                            # Zwykła (ani szklana, ani kaucyjna - np. plastykowa jednorazowa)
-		"base_value": 1.0,
+		"base_value": 0.5,
 		"region": Rect2(39, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA | FLAG_KAUCYJNA, # Kolejny wariant szklanej kaucyjnej
-		"base_value": 1.5,
+		"base_value": 0.5,
 		"region": Rect2(52, 0, 13, 18)
 	},
 	{
 		"flags": FLAG_SZKLANA,                 # Kolejny wariant szklanej niekaucyjnej
-		"base_value": 1.2,
+		"base_value": 0.5,
 		"region": Rect2(65, 0, 13, 18)
 	}
 ]
