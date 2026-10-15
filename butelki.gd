@@ -1,4 +1,5 @@
-extends Node
+class_name Bottle
+extends Area2D
 
 # 1. Definicja flag bitowych za pomocą potęg dwójki (przesunięcie bitowe)
 const FLAG_SZKLANA = 1 << 0    # 1 (binarnie: 01)
@@ -6,6 +7,7 @@ const FLAG_KAUCYJNA = 1 << 1  # 2 (binarnie: 10)
 var graczScena = preload("res://player.tscn")
 
 var spritesheet: Texture2D = preload("res://BottleSpriteSheet.png")
+var value: float = 0.0
 
 # Baza danych 6 typów butelek (współrzędne na spritesheet w pikselach: Rect2(x, y, szerokość, wysokość))
 # Załóżmy, że każda ikonka butelki ma wymiary 32x64 piksele i leżą one w rzędzie obok siebie.
@@ -43,9 +45,12 @@ var bottle_types = [
 ]
 
 func _ready() -> void:
-	# Test losowania po uruchomieniu gry
-	var wylosowana_butelka = losuj_butelke()
-	print("Wylosowana wartość: ", wylosowana_butelka["value"], " PLN")
+	var bottle_data := losuj_butelke()
+	value = float(bottle_data["value"])
+
+	var frames: SpriteFrames = $AnimatedSprite2D.sprite_frames.duplicate()
+	frames.set_frame(&"bootle", 0, bottle_data["texture"] as Texture2D)
+	$AnimatedSprite2D.sprite_frames = frames
 	losuj_butelke()
 
 func losuj_butelke() -> Dictionary:

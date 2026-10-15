@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://kuoqj2h52ysj" path="res://level1BG.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_epypp"]
 [ext_resource type="PackedScene" uid="uid://dk82c4rqoa6bt" path="res://bottleSpawner.tscn" id="3_epypp"]
+[ext_resource type="PackedScene" path="res://licznik.tscn" id="4_hud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 26)
@@ -14,6 +15,8 @@ size = Vector2(804, 21)
 size = Vector2(375, 10)
 
 [node name="Level1" type="Node2D" unique_id=453797874]
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1877307436]
 position = Vector2(576, 324.00003)
