@@ -2,13 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://kuoqj2h52ysj" path="res://level1BG.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://o7ao54vssjq2" path="res://player.tscn" id="2_epypp"]
-<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://vo0to8od2fjl" path="res://licznik.tscn" id="3_0hol4"]
 [ext_resource type="Script" uid="uid://hae6efscxunp" path="res://button.gd" id="4_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://sqc0235ofoob" path="res://bootle.tscn" id="5_kdubu"]
 [ext_resource type="Texture2D" uid="uid://dv45s7sm8or8j" path="res://BottleSpriteSheet.png" id="6_d21ai"]
-=======
->>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(69, 92)
@@ -19,7 +16,6 @@ size = Vector2(804, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(375, 10)
 
-<<<<<<< Updated upstream
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idooy"]
 size = Vector2(1147, 31)
 
@@ -43,9 +39,6 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6870t"]
 size = Vector2(34, 70)
-
-=======
->>>>>>> Stashed changes
 [node name="Level1" type="Node2D" unique_id=453797874]
 
 [node name="Label" parent="." unique_id=1518963008 instance=ExtResource("3_0hol4")]
@@ -88,7 +81,6 @@ shape = SubResource("RectangleShape2D_0hol4")
 [node name="CharacterBody2D" parent="StaticBody2D" unique_id=1766430221 instance=ExtResource("2_epypp")]
 position = Vector2(247.00002, 525)
 scale = Vector2(2.3, 2.3)
-<<<<<<< Updated upstream
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=779515684]
 
@@ -127,5 +119,3 @@ collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1736984461]
 position = Vector2(243, 536)
-=======
->>>>>>> Stashed changes
